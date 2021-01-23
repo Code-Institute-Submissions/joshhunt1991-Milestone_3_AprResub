@@ -5,6 +5,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -19,11 +20,18 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # Set up an instance of PyMongo---------
 mongo = PyMongo(app)
 
-# Routes----------------------
+# routes--------------------------------
+# route for the landing page
 @app.route("/")
 @app.route("/landing_page")
 def landing_page():
     return render_template("index.html")
+
+# route for the registration page
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
+
 
 # Get IP and Port data----------
 if __name__ == "__main__":
