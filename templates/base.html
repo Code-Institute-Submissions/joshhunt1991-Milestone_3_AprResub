@@ -21,11 +21,17 @@
             <a href="{{ url_for('landing_page') }}" class="brand-logo">VG Review</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('landing_page') }}">Home</a></li>
+                {% if session.user %}
                 <li><a href="{{ url_for('home', username=session['user']) }}">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('landing_page') }}">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
                 <li><a href="{{ url_for('login') }}">Log in</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -35,11 +41,17 @@
         <li>
             <h4 class="center-align light-blue-text text-darken 4">VG Review</h4>
         </li>
-        <li><a href="{{ url_for('landing_page') }}">Home</a></li>
+        {% if session.user %}
         <li><a href="{{ url_for('home', username=session['user']) }}">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        {% else %}
+        <li><a href="{{ url_for('landing_page') }}">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="{{ url_for('login') }}">Log in</a></li>
+        {% endif %}
     </ul>
 </header>
 
