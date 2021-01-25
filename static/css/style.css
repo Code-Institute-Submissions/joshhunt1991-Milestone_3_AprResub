@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+
+/* colours */
+.dark-grey {
+    background-color: #333333;
+}
+
+body {
+    font-family: 'Teko', sans-serif;
+}
+
+nav ul a {
+    font-size: 2em;
+}
+
+.logo {
+    height: 56px;
+}
