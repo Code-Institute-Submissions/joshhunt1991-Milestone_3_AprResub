@@ -13,6 +13,9 @@
     color: #ffffff;
 }
 
+.black-text {
+    color: #000000;
+}
 /* nav bar */
 nav ul a {
     font-size: 2em;
@@ -86,8 +89,17 @@ p {
 }
 
 .call-to-action {
-    background-color: red;
+    background-color: black;
 }
+
+/* buttons */
+
+.signup-btn {
+    margin-bottom: 30px;
+    font-size: 3em;
+    font-weight: 800;
+}
+
 /* footer */
 
 .footer-copyright{
@@ -121,4 +133,6 @@ p {
 .landing-image {
     max-width: 100%;
     min-width: 100%;
+    min-height: 550px;
+    margin-bottom: -10px;
 }
