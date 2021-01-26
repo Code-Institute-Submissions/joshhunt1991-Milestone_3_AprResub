@@ -17,8 +17,9 @@
 <header>
     <!-- top navbar -->
     <nav class="nav-extended text-shadow grey">
-        <div class="nav-wrapper dark-grey">
-            <a href="{{ url_for('landing_page') }}" class="brand-logo"><img class="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="This is the logo"></a>
+        <div class="nav-wrapper normal-grey">
+            <a href="{{ url_for('landing_page') }}" class="brand-logo"><img class="logo"
+                    src="{{ url_for('static', filename='images/logo.png') }}" alt="This is the logo"></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
                 {% if session.user %}
@@ -39,7 +40,7 @@
     <!-- mobile sidenav -->
     <ul class="sidenav" id="mobile-demo">
         <li>
-            <h4 class="center-align light-blue-text text-darken 4">VG Review</h4>
+            <h3 class="center-align text-darken 4">VG Review</h3>
         </li>
         {% if session.user %}
         <li><a href="{{ url_for('home', username=session['user']) }}">Home</a></li>
@@ -70,21 +71,52 @@
         {% endwith %}
     </section>
 
-    <main class="container">
+    <main class="container full-width">
         {% block content %}
         {% endblock %}
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>z
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %}
     {% endblock %}
 </body>
 
-<footer>
-    
+<footer class="normal-grey">
+    <div class="container">
+        <div class="row no-margins">
+            <div class="col-12">
+                <ul class="social-list">
+                    <li><a target="_blank" href="#">
+                            <i class="fab fa-facebook social-icon" aria-hidden="true"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a></li>
+                    <li><a target="_blank" href="#">
+                    <li><a target="_blank" href="#">
+                            <i class="fab fa-twitter social-icon" aria-hidden="true"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a></li>
+                    <li><a target="_blank" href="#">
+                            <i class="fab fa-linkedin social-icon" aria-hidden="true"></i>
+                            <span class="sr-only">LinkedIn</span>
+                        </a></li>
+                    <li><a target="_blank" href="#">
+                            <i class="fab fa-instagram social-icon" aria-hidden="true"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a></li>
+                    <li><a target="_blank" href="#">
+                            <i class="fab fa-youtube social-icon"></i>
+                            <span class="sr-only">YouTube</span>
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright dark-grey white-text">
+        <p>© 2021 Copyright Text</p>
+    </div>
 </footer>
 
 </html>

@@ -1,18 +1,124 @@
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
 
 /* colours */
-.dark-grey {
+.normal-grey {
     background-color: #333333;
 }
 
-body {
-    font-family: 'Teko', sans-serif;
+.dark-grey {
+    background-color: #212121;
 }
 
+.white-text {
+    color: #ffffff;
+}
+
+/* nav bar */
 nav ul a {
     font-size: 2em;
 }
 
 .logo {
     height: 56px;
+}
+
+.sidenav {
+    background-color: #212121;
+}
+
+.sidenav li>a {
+    color: #62e1e3;
+    display: block;
+    font-size: 2.5em;
+    font-weight: 300;
+    height: 70px;
+    line-height: 48px;
+    padding: 0 32px;
+}
+
+/* general */
+.center {
+    margin: 0 auto;
+}
+
+main {
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+body {
+    font-family: 'Teko', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.bodytext {
+    font-size: 2.5em;
+}
+
+main {
+    flex: 1 0 auto;
+  }
+
+h3 {
+    font-size: 3.5em;
+    color: #ffffff;
+}
+
+p {
+    padding-top: 10px;
+}
+
+.no-margins {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.container {
+    max-width: 100%;
+}
+
+.call-to-action {
+    background-color: red;
+}
+/* footer */
+
+.footer-copyright{
+    min-height: 56px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.social-list {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.social-list ul{
+  list-style: none;
+}
+
+.social-list li{
+  display: inline;
+}
+
+.social-icon {
+    color: #ffffff;
+    font-size: 2.5em;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* images */
+
+.landing-image {
+    max-width: 100%;
+    min-width: 100%;
 }

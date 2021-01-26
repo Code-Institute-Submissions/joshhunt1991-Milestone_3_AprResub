@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="test-height"></div>
+<body>
+    <div class="container full-width">
+        <div class="row">
+            <div class="col s12 m6 center">
+                <h1>Welcome to VG Reviews</h1>
+                <p class="bodytext">A place to store and view reviews for all your favourite games! Sign up today to start reading and writing reviews!</p>
+                <p class="bodytext">No reviews from potentially biased professional critics, just the honest opinions of real gamers</p>
+            </div>
+            <div class="col s12 m6 no-padding">
+                <img src="{{ url_for('static', filename='images/landing.png') }}" alt="image of game controllers under purple light" class="landing-image">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 center call-to-action white-text">
+            <h2>Sign up below and join the community!</h2>
+            <a class="waves-effect waves-light btn-large"><i class="fas fa-gamepad"></i>SIGN UP!</a>    
+        </div>
+    </div>
+
+</body>
 
 {% endblock %}
