@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
 
-/* colours */
+/* background colours */
 .normal-grey {
     background-color: #333333;
 }
@@ -13,6 +13,12 @@
     background-color: #000000;
 }
 
+.call-to-action {
+    background-color: black;
+}
+
+/* text colours */
+
 .white-text {
     color: #ffffff;
 }
@@ -20,6 +26,7 @@
 .black-text {
     color: #000000;
 }
+
 /* nav bar */
 nav ul a {
     font-size: 2em;
@@ -93,9 +100,27 @@ p {
     max-width: 100%;
 }
 
-.call-to-action {
-    background-color: black;
+.form-text {
+    font-size: 2.5em !important;
+    color: rgb(245, 21, 21) !important;
 }
+
+.form-input {
+    position: relative;
+    top: 20px;
+}
+
+/* images */
+
+.landing-div {
+    height: 100%;
+}
+
+.landing-image {
+    max-width: 100%;
+    margin-bottom: -10px;
+}
+
 
 /* buttons */
 
@@ -131,17 +156,6 @@ p {
     font-size: 2.5em;
     margin-left: 5px;
     margin-right: 5px;
-}
-
-/* images */
-
-.landing-div {
-    height: 100%;
-}
-
-.landing-image {
-    max-width: 100%;
-    margin-bottom: -10px;
 }
 
 /* media queries */
