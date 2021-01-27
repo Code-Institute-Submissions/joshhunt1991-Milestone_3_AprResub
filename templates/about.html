@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body>
+    <div class="container full-width">
+        <div class="row no-margins">
+            <div class="col s12 center">
+                <h1>About VG Reviews</h1>
+            </div>
+            <div class="col s12 center black-bg">
+                <p class="bodytext white-text">VG Review is a video game review platform designed to allow users to record their
+                    opinions on their favourite (or least favourite!) games and to read other users opinions on specific
+                    games. All reviews recorded will be from the average gamer rather than professional critics with the
+                    idea that these will be more honest due to the lack of pressure from certain organisations</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container full-width no-margins">
+        <div class="row no-margins">
+            <div class="col s12 m4 no-padding">
+                <img src="{{ url_for('static', filename='images/xbox.png') }}" alt="image of game controllers under purple light" class="landing-image">    
+            </div>
+            <div class="col s12 m4 no-padding">
+                <img src="{{ url_for('static', filename='images/pc.png') }}" alt="image of game controllers under purple light" class="landing-image">
+            </div>
+            <div class="col s12 m4 no-padding">
+                <img src="{{ url_for('static', filename='images/ps4.png') }}" alt="image of game controllers under purple light" class="landing-image">
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

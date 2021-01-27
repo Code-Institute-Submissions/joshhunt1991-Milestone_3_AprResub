@@ -9,6 +9,10 @@
     background-color: #212121;
 }
 
+.black-bg {
+    background-color: #000000;
+}
+
 .white-text {
     color: #ffffff;
 }
@@ -40,6 +44,7 @@ nav ul a {
 }
 
 /* general */
+
 .center {
     margin: 0 auto;
 }
@@ -130,9 +135,19 @@ p {
 
 /* images */
 
+.landing-div {
+    height: 100%;
+}
+
 .landing-image {
     max-width: 100%;
-    min-width: 100%;
-    min-height: 550px;
     margin-bottom: -10px;
+}
+
+/* media queries */
+
+@media screen and (max-width: 1300px) {
+  .landing-p2 {
+    display: none;
+  }
 }

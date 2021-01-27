@@ -30,6 +30,13 @@ mongo = PyMongo(app)
 def landing_page():
     return render_template("index.html")
 
+# route for the about page
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 # route for registration page
 
 

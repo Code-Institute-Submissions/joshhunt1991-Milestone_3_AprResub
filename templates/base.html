@@ -24,12 +24,12 @@
             <ul class="right hide-on-med-and-down">
                 {% if session.user %}
                 <li><a href="{{ url_for('home', username=session['user']) }}">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="#">Reviews</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}
                 <li><a href="{{ url_for('landing_page') }}">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
                 <li><a href="{{ url_for('login') }}">Log in</a></li>
                 {% endif %}
@@ -44,12 +44,12 @@
         </li>
         {% if session.user %}
         <li><a href="{{ url_for('home', username=session['user']) }}">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
         <li><a href="#">Reviews</a></li>
         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
         {% else %}
         <li><a href="{{ url_for('landing_page') }}">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
         <li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="{{ url_for('login') }}">Log in</a></li>
         {% endif %}
@@ -115,7 +115,7 @@
         </div>
     </div>
     <div class="footer-copyright dark-grey white-text">
-        <p>© 2021 Copyright Text</p>
+        <p>© 2021 Copyright VG Review</p>
     </div>
 </footer>
 
