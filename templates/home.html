@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- welcome message -->
+
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel">
@@ -10,5 +12,15 @@
             </div>
         </div>
     </div>
+
+    <!-- recent reviews carousel -->
+
+    <div class="carousel">
+    <a class="carousel-item" href="#one!"><img src="{{ url_for('static', filename='images/xbox.png') }}"></a>
+    <a class="carousel-item" href="#two!"><img src="{{ url_for('static', filename='images/xbox.png') }}"></a>
+    <a class="carousel-item" href="#three!"><img src="{{ url_for('static', filename='images/xbox.png') }}"></a>
+    <a class="carousel-item" href="#four!"><img src="{{ url_for('static', filename='images/xbox.png') }}"></a>
+    <a class="carousel-item" href="#five!"><img src="{{ url_for('static', filename='images/xbox.png') }}"></a>
+  </div>
 
 {% endblock %}
