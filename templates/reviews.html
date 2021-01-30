@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% for game in games %}
-    {{ game.game_name }}
-{% endfor %}
+<div class="container review-container">
+    {% for game in games %}
+    <div class="row">
+        <div class="col s12 m4">
+            <h2>{{ game.game_name }}</h2>
+            <p>{{ game.rating }}</p>
+            <p>{{ game.review }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}
