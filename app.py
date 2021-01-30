@@ -110,6 +110,8 @@ def home(username):
 
     return redirect(url_for("login"))
 
+# app route for logging out
+
 
 @app.route("/logout")
 def logout():
@@ -117,6 +119,16 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+# app route for review page
+
+
+@app.route("/reviews")
+def reviews():
+    games = mongo.db.games.find()
+    return render_template("reviews.html", games=games)
+
 
 # Get IP and Port data----------
 
