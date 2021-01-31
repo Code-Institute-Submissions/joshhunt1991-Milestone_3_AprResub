@@ -132,9 +132,21 @@ def reviews():
 
 # app route for adding a review
 
-@app.route("/add_game")
-def add_task():
-    return render_template("add_game.html")
+@app.route("/add_game", methods=["GET", "POST"])
+def add_game():
+    if request.method == "POST":
+        game = {
+            "game_name": request.form.get("game_name"),
+            "rating": request.form.get("rating"),
+            "review": request.form.get("review"),
+            "created_by": session["user"]
+        }
+        mongo.db.games.insert_one(game)
+        flash("Review Successfully Added")
+        return redirect(url_for("reviews"))
+
+    categories = mongo.db.categories.find().sort("game_name", 1)
+    return render_template("add_game.html", categories=categories)
 
 # Get IP and Port data----------
 
