@@ -110,6 +110,10 @@ p {
     top: 20px;
 }
 
+.star-div {
+    position: relative;
+    left: 20px;
+}
 /* images */
 
 .landing-div {

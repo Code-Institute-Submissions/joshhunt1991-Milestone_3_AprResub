@@ -130,6 +130,12 @@ def reviews():
     return render_template("reviews.html", games=games)
 
 
+# app route for adding a review
+
+@app.route("/add_game")
+def add_task():
+    return render_template("add_game.html")
+
 # Get IP and Port data----------
 
 

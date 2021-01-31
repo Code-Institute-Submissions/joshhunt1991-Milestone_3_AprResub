@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row black-bg no-margins">
+    <div class="col s12">
+        <h1 class="center-align white-text">Add a game review!</h1>
+    </div>
+</div>
+
+<div class="row black-bg no-margins">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+        <div class="card-panel">
+            <!-- game name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-user-plus prefix"></i>
+                    <input id="game_name" name="game_name" type="text" class="validate form-input">
+                    <label class="form-text active" for="game_name">Game Name</label>
+                </div>
+            </div>
+            <!-- number of stars -->
+            <p class="form-text">Rating</p>
+            <div class="row star-div">
+                <div class="col s2">
+                <p>
+                    <label>
+                        <input name="stars" type="radio" checked />
+                        <span>1</span>
+                    </label>
+                </p>
+                </div>
+                <div class="col s2">
+                <p>
+                    <label>
+                        <input name="stars" type="radio" />
+                        <span>2</span>
+                    </label>
+                </p>
+                </div>
+                <div class="col s2">
+                <p>
+                    <label>
+                        <input name="stars" type="radio" />
+                        <span>3</span>
+                    </label>
+                </p>
+                </div>
+                <div class="col s2">
+                <p>
+                    <label>
+                        <input name="stars" type="radio" />
+                        <span>4</span>
+                    </label>
+                </p>
+                </div>
+                <div class="col s2">
+                <p>
+                    <label>
+                        <input name="stars" type="radio" />
+                        <span>5</span>
+                    </label>
+                </p>
+                </div>
+            </div>
+            <!-- review text area -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="review" class="materialize-textarea form-input"></textarea>
+                    <label class="form-text" for="review">Write your review</label>
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="row">
+                <button type="submit" class="col s12 btn-large red darken-4 text-shadow">
+                    Submit <i class="fas fa-sign-in-alt"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row black-bg no-margins">
+    <div class="col s12">
+        <p class="center-align bodytext white-text">
+            Changed your mind?
+            <a href="{{ url_for('reviews') }}" class="light-blue-text text-darken-4">click to return to the review
+                page</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
