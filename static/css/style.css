@@ -13,10 +13,6 @@
     background-color: #000000;
 }
 
-.call-to-action {
-    background-color: black;
-}
-
 /* text colours */
 
 .white-text {
@@ -25,6 +21,10 @@
 
 .black-text {
     color: #000000;
+}
+
+.blue-text {
+    color: #2196F3;
 }
 
 /* nav bar */
@@ -41,7 +41,7 @@ nav ul a {
 }
 
 .sidenav li>a {
-    color: #62e1e3;
+    color: #2196F3;
     display: block;
     font-size: 2.5em;
     font-weight: 300;
@@ -68,6 +68,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: #000000;
 }
 
 .bodytext {
@@ -124,6 +125,11 @@ p {
 .star-div {
     position: relative;
     top: 30px;
+}
+
+.review-text {
+    font-size: 2em;
+    margin: 5px;
 }
 /* images */
 

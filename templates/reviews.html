@@ -5,13 +5,21 @@
 
 <div class="container review-container">
     {% for game in games %}
+
+    <div class="col s12 m4 white-text">
+        <h2 class="blue-text">{{ game.game_name }}</h2>
+        <p class="review-text">{{ game.rating }}</p>
+        <p class="review-text">{{ game.review }}</p>
+    </div>
     <div class="row">
-        <div class="col s12 m4">
-            <h2>{{ game.game_name }}</h2>
-            <p>{{ game.rating }}</p>
-            <p>{{ game.review }}</p>
+        <div class="col s1">
+            <a href="" class="btn-small light-blue lighten-1">Edit</a>
+        </div>
+        <div class="col s1">
+            <a href="" class="btn-small red darken-4">Delete</a>
         </div>
     </div>
+
     {% endfor %}
 </div>
 
