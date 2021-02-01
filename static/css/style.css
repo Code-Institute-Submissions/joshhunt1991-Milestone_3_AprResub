@@ -51,7 +51,6 @@ nav ul a {
 }
 
 /* general */
-
 .center {
     margin: 0 auto;
 }
@@ -113,6 +112,18 @@ p {
 .star-div {
     position: relative;
     left: 20px;
+}
+
+.rating-label-div {
+    height: 30px;
+    margin-bottom: 0px;
+    position: relative;
+    top: -15px;
+}
+
+.star-div {
+    position: relative;
+    top: 30px;
 }
 /* images */
 

@@ -13,21 +13,23 @@
             <!-- game name -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-user-plus prefix"></i>
+                    <i class="fas fa-gamepad prefix black-text"></i>
                     <input id="game_name" name="game_name" type="text" minlength="3" maxlength="50" class="validate form-input" required>
                     <label class="form-text" for="game_name">Game Name</label>
                 </div>
             </div>
             <!-- number of stars -->
-            <div class="row">
-            <p class="form-text"><i class="fas fa-user-plus prefix black-text"></i>  Rating</p>
+            <div class="row rating-label-div">
+                <div class="col s12 rating-label-div">
+            <p class="form-text"><i class="far fa-star black-text"></i>  Rating</p>
+                </div>
             </div>
             <div class="row star-div">
                 <div class="col s2">
                 <p>
                     <label for="1">
                         <input id="1" name="rating" type="radio" value="1" checked />
-                        <span>1</span>
+                        <span class="form-text">1</span>
                     </label>
                 </p>
                 </div>
@@ -35,7 +37,7 @@
                 <p>
                     <label for="2">
                         <input id="2" name="rating" type="radio" value="2"/>
-                        <span>2</span>
+                        <span class="form-text">2</span>
                     </label>
                 </p>
                 </div>
@@ -43,7 +45,7 @@
                 <p>
                     <label for="3">
                         <input id="3" name="rating" type="radio" value="3"/>
-                        <span>3</span>
+                        <span class="form-text">3</span>
                     </label>
                 </p>
                 </div>
@@ -51,7 +53,7 @@
                 <p>
                     <label for="4">
                         <input id="4" name="rating" type="radio" value="4"/>
-                        <span>4</span>
+                        <span class="form-text">4</span>
                     </label>
                 </p>
                 </div>
@@ -59,7 +61,7 @@
                 <p>
                     <label for="5">
                         <input id="5" name="rating" type="radio" value="5"/>
-                        <span>5</span>
+                        <span class="form-text">5</span>
                     </label>
                 </p>
                 </div>
