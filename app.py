@@ -137,7 +137,6 @@ def edit_game(game_id):
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
     return render_template("edit_game.html", game=game)
 
-
 # app route for adding a review
 
 @app.route("/add_game", methods=["GET", "POST"])
