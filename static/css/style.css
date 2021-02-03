@@ -82,6 +82,10 @@ main {
     flex: 1 0 auto;
   }
 
+h1 {
+    padding: 25px;
+}
+
 h3 {
     font-size: 3.5em;
     color: #ffffff;
@@ -134,6 +138,11 @@ p {
     font-size: 2em;
     margin: 5px;
 }
+
+.review-col {
+    background-color: #333333;
+    border-radius: 5px;
+}
 /* images */
 
 .landing-div {
@@ -152,6 +161,14 @@ p {
     margin-bottom: 30px;
     font-size: 3em;
     font-weight: 800;
+}
+
+.add-review {
+    padding: 25px;
+}
+
+.btn {
+    margin: 10px !important;
 }
 
 /* footer */

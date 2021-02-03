@@ -157,7 +157,7 @@ def edit_game(game_id):
     return render_template("edit_game.html", game=game)
 
 
-# delete a review
+# app route to delete a review
 
 
 @app.route("/delete_game/<game_id>")
@@ -165,6 +165,14 @@ def delete_game(game_id):
     mongo.db.games.remove({"_id": ObjectId(game_id)})
     flash("Review Successfully Deleted")
     return redirect(url_for("reviews"))
+
+#app route to search reviews
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    games = list(mongo.db.games.find({"$text": {"$search": query}}))
+    return render_template("reviews.html", games=games)
 
 # Get IP and Port data----------
 
