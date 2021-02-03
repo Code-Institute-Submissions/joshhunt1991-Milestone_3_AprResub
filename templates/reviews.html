@@ -35,7 +35,17 @@
     <div class="row">
     <div class="col s12 white-text review-col">
         <h2 class="blue-text">{{ game.game_name }}</h2>
-        <p class="review-text">{{ game.rating }}</p>
+        {% if game.rating == "5" %}        
+        <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+        {% elif game.rating == "4" %}
+        <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+        {% elif game.rating == "3" %}
+        <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+        {% elif game.rating == "2" %}
+        <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+        {% elif game.rating == "1" %}
+        <p class="review-text"><i class="fas fa-star"></i></p>
+        {% endif %}
         <p class="review-text">{{ game.review }}</p>
         <p class="blue-text bodytext review-text">Review by "{{ game.created_by }}"</p>
 
