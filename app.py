@@ -1,5 +1,7 @@
 # Necessary imports-----------------
 import os
+import requests
+import json
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -8,6 +10,12 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
+
+# user agent header for api requests----
+headers = {
+    'User-Agent': 'VGReviewApp',
+    'From': 'joshhunt1991@hotmail.co.uk'
+}
 
 # Created an instance of flask--------
 app = Flask(__name__)
@@ -135,13 +143,28 @@ def reviews():
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
+        game_name = request.form.get("game_name")
         game = {
             "game_name": request.form.get("game_name"),
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
             "created_by": session["user"]
         }
+
+        url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
+
+        headers = {
+            'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
+            'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
+            }
+
+        response = requests.request("GET", url, headers=headers)
+        data =json.loads(response.text)
         mongo.db.games.insert_one(game)
+
+        for games in data['results']:
+            print(games['background_image'])
+
         flash("Review Successfully Added")
         return redirect(url_for("reviews"))
 
