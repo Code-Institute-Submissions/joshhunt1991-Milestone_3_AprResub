@@ -153,6 +153,16 @@ def add_game():
 
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
 def edit_game(game_id):
+    if request.method == "POST":
+        submit = {
+            "game_name": request.form.get("game_name"),
+            "rating": request.form.get("rating"),
+            "review": request.form.get("review"),
+            "created_by": session["user"]
+        }
+        mongo.db.games.update({"_id": ObjectId(game_id)}, submit)
+        flash("Review Successfully Added")
+
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
     return render_template("edit_game.html", game=game)
 
@@ -167,6 +177,7 @@ def delete_game(game_id):
     return redirect(url_for("reviews"))
 
 #app route to search reviews
+
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
