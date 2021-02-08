@@ -11,6 +11,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
+# global variables
+savedImages = 0
+
 # user agent header for api requests----
 headers = {
     'User-Agent': 'VGReviewApp',
@@ -162,16 +165,23 @@ def add_game():
         data =json.loads(response.text)
         mongo.db.games.insert_one(game)
 
-        for games in data['results']:
-            print(games['background_image'])
+        global savedImages
+        savedImages = data
 
-        flash("Review Successfully Added")
-        return redirect(url_for("reviews"))
+        return redirect(url_for("game_images"))
 
-    categories = mongo.db.categories.find().sort("game_name", 1)
-    return render_template("add_game.html", categories=categories)
+    return render_template("add_game.html")
 
-    # app route for editing review
+# app route for images page
+
+
+@app.route("/game_images")
+def game_images():
+    for games in savedImages['results']:
+        print(games['background_image'])
+    return render_template("game_images.html")
+
+# app route for editing review
 
 
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
@@ -199,7 +209,7 @@ def delete_game(game_id):
     flash("Review Successfully Deleted")
     return redirect(url_for("reviews"))
 
-#app route to search reviews
+# app route to search reviews
 
 
 @app.route("/search", methods=["GET", "POST"])
