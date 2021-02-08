@@ -179,7 +179,7 @@ def add_game():
 def game_images():
     for games in savedImages['results']:
         print(games['background_image'])
-    return render_template("game_images.html")
+    return render_template("game_images.html", savedImages=savedImages)
 
 # app route for editing review
 

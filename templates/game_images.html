@@ -2,11 +2,19 @@
 {% block content %}
 
 <body>
-    {% for games in games %}
-    <div class="container no-margins no-padding full-width">
-        <p>{{ games.background_image }}</p>
-    </div>
+
+    <h1 class="center blue-text">Select your chosen game below!</h1>
+    
+    <div class="row">
+    {% for games in savedImages.results %}
+        <div class="col s4 l4 no-padding">
+            <p class="white-text center bodytext">{{ games.name }}</p>
+            <a href=""><img class="review-image" src="{{ games.background_image }}" alt="game image"></a>
+        </div>
     {% endfor %}
+    </div>
 </body>
+
+
 
 {% endblock %}
