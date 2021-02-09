@@ -181,6 +181,13 @@ def game_images():
         print(games['background_image'])
     return render_template("game_images.html", savedImages=savedImages)
 
+# app route for adding image
+
+
+@app.route("/add_image/<game_id>", methods=["GET", "POST"])
+def add_image(game_id):
+    return render_template("reviews.html")
+
 # app route for editing review
 
 

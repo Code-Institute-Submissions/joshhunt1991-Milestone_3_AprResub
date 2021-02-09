@@ -31,7 +31,7 @@
     </div>
 
 <div class="container review-container">
-    {% for game in games %}
+    {% for game in games|reverse %}
     <div class="row">
     <div class="col s12 white-text review-col">
         <h2 class="blue-text">{{ game.game_name }}</h2>
