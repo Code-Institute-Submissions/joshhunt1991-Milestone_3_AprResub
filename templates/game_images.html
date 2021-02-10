@@ -9,7 +9,11 @@
     {% for games in savedImages.results %}
         <div class="col s4 l4 no-padding">
             <p class="white-text center bodytext">{{ games.name }}</p>
-            <a href="{{ url_for('add_image', game_id=game._id) }}"><img class="review-image" src="{{ games.background_image }}" alt="game image"></a>
+            <form class=" center" method="POST" action="{{ url_for('add_image') }}">
+            <button class="image-button" type="submit"><img class="review-image" src="{{ games.background_image }}" alt="game image"></button>
+            <input hidden name="image_url" value="{{ games.background_image }}">
+            <p style="display: none">{{ games.background_image }}</p>
+            </form>
         </div>
     {% endfor %}
     </div>
