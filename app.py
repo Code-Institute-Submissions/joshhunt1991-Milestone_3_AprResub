@@ -15,7 +15,7 @@ import uuid
 
 # global variables
 savedImages = 0
-game_id = 0
+spare_id = 0
 
 # user agent header for api requests----
 headers = {
@@ -150,13 +150,14 @@ def reviews():
 def add_game():
     if request.method == "POST":
         game_name = request.form.get("game_name")
-        game_id = uuid.uuid4().hex.upper()
+        global spare_id
+        spare_id = uuid.uuid4().hex.upper()
         game = {
             "game_name": request.form.get("game_name"),
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
             "created_by": session["user"],
-            "game_id": game_id
+            "spare_id": spare_id
         }
 
         url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
@@ -196,6 +197,12 @@ def add_image():
     if request.method == 'POST':
         image_url = request.form.get('image_url')
         print(image_url)
+        print(spare_id)
+        gameValues = mongo.db.games.find_one({"spare_id": spare_id})
+        print(gameValues)
+        mongo.db.games.update({"spare_id": spare_id}, {"background_image": image_url})
+        flash("Review Successfully Added")
+
         return redirect(url_for("reviews"))
 
 # app route for editing review
@@ -204,14 +211,32 @@ def add_image():
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
 def edit_game(game_id):
     if request.method == "POST":
+        game_name = request.form.get("game_name")
+        global spare_id
+        spare_id = uuid.uuid4().hex.upper()
         submit = {
             "game_name": request.form.get("game_name"),
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
-            "created_by": session["user"]
+            "created_by": session["user"],
+            "spare_id": spare_id
         }
+
+        url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
+
+        headers = {
+            'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
+            'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
+            }
+
+        response = requests.request("GET", url, headers=headers)
+        data =json.loads(response.text)
         mongo.db.games.update({"_id": ObjectId(game_id)}, submit)
-        flash("Review Successfully Added")
+
+        global savedImages
+        savedImages = data
+
+        return redirect(url_for("game_images"))
 
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
     return render_template("edit_game.html", game=game)
