@@ -4,6 +4,11 @@
 <body>
 
     <h1 class="center blue-text">Select your chosen game below!</h1>
+
+    <!-- back button -->
+    <div class="center add-review">
+        <a href="{{ url_for('reviews') }}" class="review-text waves-effect waves-light btn-large red darken-4"><i class="fas fa-dice-d20"></i> BACK</a>
+    </div>
     
     <div class="row">
     {% for games in savedImages.results %}
