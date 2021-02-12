@@ -200,7 +200,7 @@ def add_image():
         print(spare_id)
         gameValues = mongo.db.games.find_one({"spare_id": spare_id})
         print(gameValues)
-        mongo.db.games.update({"spare_id": spare_id}, {"background_image": image_url})
+        mongo.db.games.update({"spare_id": spare_id},{"$set": {"background_image": image_url}})
         flash("Review Successfully Added")
 
         return redirect(url_for("reviews"))

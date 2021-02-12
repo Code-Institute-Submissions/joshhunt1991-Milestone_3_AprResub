@@ -154,6 +154,9 @@ opacity: 0.5;
 }
 
 /* images */
+.chosen-image {
+    max-width: 100%;
+}
 
 .landing-div {
     height: 100%;
