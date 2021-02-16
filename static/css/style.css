@@ -155,7 +155,8 @@ opacity: 0.5;
 
 /* images */
 .chosen-image {
-    max-width: 100%;
+    width: 100%;
+    padding-top: 10px;
 }
 
 .landing-div {

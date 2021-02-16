@@ -35,11 +35,12 @@
     <div class="row">
     <div class="col s12 white-text review-col">
         <div class="row">
-            <div class="col s4">
+            <div class="col s12">
                 <img class="chosen-image" src="{{ game.background_image }}">
             </div>
             <div class="col s8">
                 <h2 class="blue-text">{{ game.game_name }}</h2>
+                <p class="review-text">Release date - {{ game.released }}</p>
                 {% if game.rating == "5" %}        
                 <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
                 {% elif game.rating == "4" %}

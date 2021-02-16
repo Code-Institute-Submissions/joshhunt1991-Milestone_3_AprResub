@@ -187,20 +187,24 @@ def game_images():
     print(game)
     for games in savedImages['results']:
         print(games['background_image'])
+        print(games['released'])
     return render_template("game_images.html", savedImages=savedImages)
 
-# app route for adding image
+# app route for adding image and release date
 
 
 @app.route("/add_image", methods=["GET", "POST"])
 def add_image():
     if request.method == 'POST':
         image_url = request.form.get('image_url')
+        released = request.form.get('released')
         print(image_url)
+        print(released)
         print(spare_id)
         gameValues = mongo.db.games.find_one({"spare_id": spare_id})
         print(gameValues)
-        mongo.db.games.update({"spare_id": spare_id},{"$set": {"background_image": image_url}})
+        mongo.db.games.update({"spare_id": spare_id}, {"$set": {"background_image": image_url}})
+        mongo.db.games.update({"spare_id": spare_id}, {"$set": {"released": released}})
         flash("Review Successfully Added")
 
         return redirect(url_for("reviews"))

@@ -17,6 +17,7 @@
             <form class=" center" method="POST" action="{{ url_for('add_image') }}">
             <button class="image-button" type="submit"><img class="review-image" src="{{ games.background_image }}" alt="game image"></button>
             <input hidden name="image_url" value="{{ games.background_image }}">
+            <input hidden name="released" value="{{ games.released }}">
             <p style="display: none">{{ games.background_image }}</p>
             </form>
         </div>
