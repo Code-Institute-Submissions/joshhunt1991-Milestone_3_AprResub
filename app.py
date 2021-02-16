@@ -140,7 +140,8 @@ def logout():
 
 @app.route("/reviews")
 def reviews():
-    games = mongo.db.games.find()
+    limit = 10
+    games = mongo.db.games.find().limit(limit)
     return render_template("reviews.html", games=games)
 
 
