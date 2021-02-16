@@ -137,6 +137,8 @@ p {
 .review-text {
     font-size: 2em;
     margin: 5px;
+    padding: 0px;
+    width: 100%;
 }
 
 .review-col {
@@ -151,6 +153,10 @@ p {
 .image-button:hover {
 background-color: #000000;
 opacity: 0.5;
+}
+
+.review-div {
+    width: 100%;
 }
 
 /* images */
@@ -173,6 +179,10 @@ opacity: 0.5;
     height: 250px;
 }
 
+.input-field>label {
+    font-size: 2em;
+}
+
 /* buttons */
 
 .signup-btn {
@@ -181,8 +191,12 @@ opacity: 0.5;
     font-weight: 800;
 }
 
-.add-review {
+.add-review-div {
     padding: 25px;
+}
+
+.button-text {
+    font-size: 2em;
 }
 
 .btn {
