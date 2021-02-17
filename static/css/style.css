@@ -159,6 +159,10 @@ opacity: 0.5;
     width: 100%;
 }
 
+.welcome-row {
+    margin-top: 20px;
+}
+
 /* images */
 .chosen-image {
     width: 100%;
@@ -233,10 +237,10 @@ opacity: 0.5;
 
 /* review carousel */
 
-.carousel {
-    height: 400px !important;
+.carousel-item {
+    width: 50% !important;
+    height: 100% !important;
 }
-
 
 /* media queries */
 
