@@ -118,11 +118,14 @@ def home(username):
     # retrieve the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    limit = 20
+    games = mongo.db.games.find().limit(limit)
 
     if session["user"]:
-        return render_template("home.html", username=username)
+        return render_template("home.html", username=username, games=games)
 
     return redirect(url_for("login"))
+
 
 # app route for logging out
 
@@ -140,7 +143,7 @@ def logout():
 
 @app.route("/reviews")
 def reviews():
-    limit = 10
+    limit = 50
     games = mongo.db.games.find().limit(limit)
     return render_template("reviews.html", games=games)
 

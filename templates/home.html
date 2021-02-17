@@ -1,27 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <!-- welcome message -->
+<!-- welcome message -->
 
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel">
-                <h3 class="center-align light-blue-text text-darken 4">
-                    Welcome {{ username }}, head to the review page to start reviewing games!
-                </h3>
-            </div>
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card-panel">
+            <h3 class="center-align light-blue-text text-darken 4">
+                Welcome {{ username }}, head to the review page to start reviewing games!
+            </h3>
         </div>
     </div>
+</div>
 
-    
-    <!-- recent reviews carousel -->
+
+<!-- recent reviews carousel -->
 
 <div class="carousel">
-    <a class="carousel-item" href="#one!"><img src="{{ url_for('static', filename='images/landing.png') }}"></a>
-    <a class="carousel-item" href="#two!"><img src="{{ url_for('static', filename='images/landing.png') }}"></a>
-    <a class="carousel-item" href="#three!"><img src="{{ url_for('static', filename='images/landing.png') }}"></a>
-    <a class="carousel-item" href="#four!"><img src="{{ url_for('static', filename='images/landing.png') }}"></a>
-    <a class="carousel-item" href="#five!"><img src="{{ url_for('static', filename='images/landing.png') }}"></a>
-  </div>
+    {% for game in games|reverse %}
+    <a class="carousel-item" href="#"><img src="{{ game.background_image }}"></a>
+    {% endfor %}
+</div>
 
 {% endblock %}
