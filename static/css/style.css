@@ -236,10 +236,25 @@ opacity: 0.5;
 }
 
 /* review carousel */
+.carousel-container {
+    height: 400px;
+}
+
+.recent-font {
+    font-size: 2em;
+    margin: 5px;
+}
+
+.carousel {
+    height: 120% !important; 
+    top: -100px !important;
+}
 
 .carousel-item {
-    width: 50% !important;
-    height: 100% !important;
+    width: 100% !important;
+}
+
+.thumbnail {
 }
 
 /* media queries */

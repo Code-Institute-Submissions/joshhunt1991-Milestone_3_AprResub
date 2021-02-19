@@ -20,7 +20,6 @@ spare_id = 0
 # user agent header for api requests----
 headers = {
     'User-Agent': 'VGReviewApp',
-    'From': 'joshhunt1991@hotmail.co.uk'
 }
 
 # Created an instance of flask--------
