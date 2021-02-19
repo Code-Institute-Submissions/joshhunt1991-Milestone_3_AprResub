@@ -236,6 +236,11 @@ opacity: 0.5;
 }
 
 /* review carousel */
+
+.recent-review-txt {
+    padding-bottom: 30px;
+}
+
 .carousel-container {
     height: 400px;
 }
@@ -247,11 +252,12 @@ opacity: 0.5;
 
 .carousel {
     height: 120% !important; 
-    top: -100px !important;
+    top: -50px !important;
 }
 
 .carousel-item {
-    width: 100% !important;
+    height: 400px !important;
+    width: 400px !important;
 }
 
 .thumbnail {
