@@ -147,6 +147,14 @@ def reviews():
     return render_template("reviews.html", games=games)
 
 
+# app route for error page
+
+
+@app.route("/error_page/<error>")
+def error_page(error):
+    return render_template("error_page.html, e = error")
+
+
 # app route for adding a review
 
 @app.route("/add_game", methods=["GET", "POST"])
@@ -170,14 +178,19 @@ def add_game():
             'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
             }
 
+
         response = requests.request("GET", url, headers=headers)
-        data =json.loads(response.text)
+        data = json.loads(response.text)
         mongo.db.games.insert_one(game)
 
         global savedImages
         savedImages = data
+        print(savedImages)
 
-        return redirect(url_for("game_images"))
+        if savedImages:
+            return redirect(url_for("game_images"))
+        else:
+            return redirect(url_for("error_page"))
 
     return render_template("add_game.html")
 
@@ -188,9 +201,9 @@ def add_game():
 def game_images():
     game = mongo.db.games.find_one({"_id": ObjectId()})
     print(game)
-    for games in savedImages['results']:
-        print(games['background_image'])
-        print(games['released'])
+    # for games in savedImages['results']:
+    #     print(games['background_image'])
+    #     print(games['released'])
     return render_template("game_images.html", savedImages=savedImages)
 
 # app route for adding image and release date
