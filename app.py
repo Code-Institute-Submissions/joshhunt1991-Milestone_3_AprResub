@@ -146,19 +146,11 @@ def reviews():
     return render_template("reviews.html", games=games)
 
 
-# app route for error page
-
-
-@app.route("/error_page/<error>")
-def error_page(error):
-    return render_template("error_page.html, e = error")
-
-
 # app route for adding a review
 
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
-    if request.method == "POST":
+    if request.method == "POST" and session["user"]:
         game_name = request.form.get("game_name")
         global spare_id
         spare_id = uuid.uuid4().hex.upper()
@@ -186,10 +178,10 @@ def add_game():
         savedImages = data
         print(savedImages)
 
-        if savedImages:
-            return redirect(url_for("game_images"))
-        else:
-            return redirect(url_for("error_page"))
+        print(session["user"])
+
+        return redirect(url_for("game_images"))
+
 
     return render_template("add_game.html")
 
@@ -200,9 +192,6 @@ def add_game():
 def game_images():
     game = mongo.db.games.find_one({"_id": ObjectId()})
     print(game)
-    # for games in savedImages['results']:
-    #     print(games['background_image'])
-    #     print(games['released'])
     return render_template("game_images.html", savedImages=savedImages)
 
 # app route for adding image and release date
@@ -210,7 +199,7 @@ def game_images():
 
 @app.route("/add_image", methods=["GET", "POST"])
 def add_image():
-    if request.method == 'POST':
+    if request.method == 'POST' and session["user"]:
         image_url = request.form.get('image_url')
         released = request.form.get('released')
         print(image_url)
@@ -229,33 +218,34 @@ def add_image():
 
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
 def edit_game(game_id):
-    if request.method == "POST":
-        game_name = request.form.get("game_name")
-        global spare_id
-        spare_id = uuid.uuid4().hex.upper()
-        submit = {
-            "game_name": request.form.get("game_name"),
-            "rating": request.form.get("rating"),
-            "review": request.form.get("review"),
-            "created_by": session["user"],
-            "spare_id": spare_id
+    game_name = request.form.get("game_name")
+    global spare_id
+    spare_id = uuid.uuid4().hex.upper()
+    submit = {
+        "game_name": request.form.get("game_name"),
+        "rating": request.form.get("rating"),
+        "review": request.form.get("review"),
+        "created_by": session["user"],
+        "spare_id": spare_id
         }
+    if request.method == "POST":
+        if session["user"] == submit["created_by"] or session["user"] == "admin":
 
-        url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
+            url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
 
-        headers = {
-            'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
-            'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
-            }
+            headers = {
+                'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
+                'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
+                }
 
-        response = requests.request("GET", url, headers=headers)
-        data =json.loads(response.text)
-        mongo.db.games.update({"_id": ObjectId(game_id)}, submit)
+            response = requests.request("GET", url, headers=headers)
+            data =json.loads(response.text)
+            mongo.db.games.update({"_id": ObjectId(game_id)}, submit)
 
-        global savedImages
-        savedImages = data
+            global savedImages
+            savedImages = data
 
-        return redirect(url_for("game_images"))
+            return redirect(url_for("game_images"))
 
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
     return render_template("edit_game.html", game=game)
@@ -266,9 +256,11 @@ def edit_game(game_id):
 
 @app.route("/delete_game/<game_id>")
 def delete_game(game_id):
-    mongo.db.games.remove({"_id": ObjectId(game_id)})
-    flash("Review Successfully Deleted")
-    return redirect(url_for("reviews"))
+    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+    if session["user"] == game["created_by"] or session["user"] == "admin":
+        mongo.db.games.remove({"_id": ObjectId(game_id)})
+        flash("Review Successfully Deleted")
+        return redirect(url_for("reviews"))
 
 # app route to search reviews
 
