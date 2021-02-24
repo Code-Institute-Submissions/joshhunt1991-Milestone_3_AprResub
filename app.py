@@ -141,8 +141,8 @@ def logout():
 
 @app.route("/reviews")
 def reviews():
-    limit = 50
-    games = mongo.db.games.find().limit(limit)
+    limit = 5
+    games = mongo.db.games.find().sort("_id", -1).limit(limit)
     return render_template("reviews.html", games=games)
 
 
@@ -270,6 +270,13 @@ def search():
     query = request.form.get("query")
     games = list(mongo.db.games.find({"$text": {"$search": query}}))
     return render_template("reviews.html", games=games)
+
+# error handling
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('page_not_found.html'), 404
 
 # Get IP and Port data----------
 
