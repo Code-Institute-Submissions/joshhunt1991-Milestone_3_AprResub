@@ -9,6 +9,10 @@
     background-color: #212121;
 }
 
+.darker-grey {
+    background-color: #242424;
+}
+
 .black-bg {
     background-color: #000000;
 }
@@ -147,7 +151,6 @@ p {
 }
 
 .review-col {
-    background-color: #333333;
     border-radius: 5px;
 }
 
