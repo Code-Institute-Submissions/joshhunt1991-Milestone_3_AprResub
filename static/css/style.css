@@ -117,6 +117,11 @@ p {
     top: 20px;
 }
 
+.game-name {
+    margin-left: 5px;
+    margin-bottom: 0px;
+}
+
 .star-div {
     position: relative;
     left: 20px;
@@ -153,6 +158,10 @@ p {
 .image-button:hover {
 background-color: #000000;
 opacity: 0.5;
+}
+
+.review-container {
+    width: 95%;
 }
 
 .review-div {
@@ -264,9 +273,21 @@ opacity: 0.5;
 }
 
 /* pagination */
+
 .pagination {
-    ;
+    text-align: center;
 }
+
+.pagination li.active a {
+    color: #2196F3;
+    background-color: #ffffff
+}
+
+.pagination li a {
+    color: #2196F3;
+    font-size: 2em;
+}
+
 
 /* media queries */
 
@@ -274,4 +295,15 @@ opacity: 0.5;
   .landing-p2 {
     display: none;
   }
+}
+
+@media screen and (min-width: 800px) {
+  .review-container {
+    width: 80%;
+}
+}
+@media screen and (min-width: 1000px) {
+  .review-container {
+    width: 60%;
+}
 }
