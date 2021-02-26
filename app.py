@@ -6,6 +6,8 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
+import pymongo
+from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -141,9 +143,32 @@ def logout():
 
 @app.route("/reviews")
 def reviews():
-    limit = 5
-    games = mongo.db.games.find().sort("_id", -1).limit(limit)
-    return render_template("reviews.html", games=games)
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+
+    per_page = 3
+    offset = (page - 1) * per_page
+
+    total = mongo.db.games.find().count()
+
+    print(total)
+    print(page, per_page, offset)
+
+    findGames = mongo.db.games.find().sort("_id", -1)
+
+    paginatedGames = findGames[offset: offset + per_page]
+
+    print(paginatedGames)
+
+    pagination = Pagination(page=page, per_page=per_page, total=total)
+    print(page, per_page, offset)
+
+    return render_template('reviews.html',
+                           games=paginatedGames,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination,
+                           )
+
 
 
 # app route for adding a review

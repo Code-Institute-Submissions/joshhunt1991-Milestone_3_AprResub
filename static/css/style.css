@@ -263,6 +263,11 @@ opacity: 0.5;
 .thumbnail {
 }
 
+/* pagination */
+.pagination {
+    ;
+}
+
 /* media queries */
 
 @media screen and (max-width: 1300px) {
