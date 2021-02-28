@@ -323,9 +323,17 @@ def delete_game(game_id):
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    query = request.form.get("query")
-    games = list(mongo.db.games.find({"$text": {"$search": query}}))
-    return render_template("reviews.html", games=games)
+    games = ""
+    print(games)
+    if request.method == "POST":
+
+        query = request.form.get("query")
+        print(query)
+        games = list(mongo.db.games.find({"$text": {"$search": query}}))
+        print(games)
+
+    return render_template("search.html", games=games)
+
 
 # error handling
 
