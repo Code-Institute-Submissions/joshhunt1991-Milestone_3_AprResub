@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- header -->
+
+<h1 class="blue-text center">Your {{ username }} previous reviews!</h1>
+
+<!-- add review link -->
+<div class="center add-review-div">
+    <a href="{{ url_for('add_game', username=session['user']) }}"
+        class="add-review waves-effect waves-light btn-large blue-bg button-text"><i
+            class="fas fa-pencil-alt right"></i>Add your review!</a>
+</div>
+
+
+{{ pagination.links }}
+
+<!-- reviews -->
+
+<div class="container review-container">
+    {% for game in games %}
+    <div class="row">
+        <div class="col s12 white-text darker-grey review-col">
+            <div class="row">
+                <div class="col s12 center">
+                    <img class="chosen-image" src="{{ game.background_image }}">
+                </div>
+                <div class="col s12 review-div">
+                    <h2 class="blue-text game-name">{{ game.game_name }}</h2>
+                    <p class="blue-text bodytext review-text">Release date - {{ game.released }}</p>
+                    {% if game.rating == "5" %}
+                    <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                    {% elif game.rating == "4" %}
+                    <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                    {% elif game.rating == "3" %}
+                    <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i></p>
+                    {% elif game.rating == "2" %}
+                    <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                    {% elif game.rating == "1" %}
+                    <p class="review-text"><i class="fas fa-star"></i></p>
+                    {% endif %}
+                    <p class="review-text">{{ game.review }}</p>
+                    <p class="blue-text bodytext review-text">Review by "{{ game.created_by }}"</p>
+                </div>
+            </div>
+
+            {% if session.user|lower == game.created_by|lower or session.user|lower == "admin"|lower %}
+            <div class="row">
+                <div class="col s1.5">
+                    <a href="{{ url_for('edit_game', game_id=game._id) }}"
+                        class="review-text waves-effect waves-light btn light-blue lighten-1">Edit</a>
+                </div>
+                <div class="col s1.5">
+                    <a href="{{ url_for('delete_game', game_id=game._id) }}"
+                        class="review-text waves-effect waves-light btn red darken-4">Delete</a>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{{ pagination.links }}
+
+{% endblock %}

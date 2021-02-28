@@ -13,6 +13,13 @@
     </div>
 </div>
 
+<!-- profile reviews link -->
+<div class="center add-review-div">
+    <a href="{{ url_for('profile_reviews', username=session['user']) }}"
+        class="add-review waves-effect waves-light btn-large blue-bg button-text"><i
+            class="fas fa-pencil-alt right"></i>View your reviews</a>
+</div>
+
 <!-- recently reviewed games header -->
 
 <h3 class="blue-text center recent-review-txt">Recently reviewed games</h3>

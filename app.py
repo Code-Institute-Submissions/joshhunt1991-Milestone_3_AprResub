@@ -169,6 +169,38 @@ def reviews():
                            pagination=pagination,
                            )
 
+# app route for profile_review page
+
+
+@app.route("/profile_reviews")
+def profile_reviews():
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+
+    per_page = 3
+    offset = (page - 1) * per_page
+    user = session["user"]
+
+    total = mongo.db.games.find({"created_by": user}).count()
+
+    print(total)
+    print(page, per_page, offset)
+    print(user)
+
+    findGames = mongo.db.games.find({"created_by": user}).sort("_id", -1)
+
+    paginatedGames = findGames[offset: offset + per_page]
+
+    print(paginatedGames)
+
+    pagination = Pagination(page=page, per_page=per_page, total=total)
+    print(page, per_page, offset)
+
+    return render_template('profile_reviews.html',
+                           games=paginatedGames,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination,
+                           )
 
 
 # app route for adding a review
@@ -206,7 +238,6 @@ def add_game():
         print(session["user"])
 
         return redirect(url_for("game_images"))
-
 
     return render_template("add_game.html")
 
