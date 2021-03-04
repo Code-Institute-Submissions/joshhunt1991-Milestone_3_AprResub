@@ -208,36 +208,39 @@ def profile_reviews():
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST" and session["user"]:
-        game_name = request.form.get("game_name")
-        global spare_id
-        spare_id = uuid.uuid4().hex.upper()
-        game = {
-            "game_name": request.form.get("game_name"),
-            "rating": request.form.get("rating"),
-            "review": request.form.get("review"),
-            "created_by": session["user"],
-            "spare_id": spare_id
-        }
-
-        url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
-
-        headers = {
-            'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
-            'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
+        try: 
+            game_name = request.form.get("game_name")
+            global spare_id
+            spare_id = uuid.uuid4().hex.upper()
+            game = {
+                "game_name": request.form.get("game_name"),
+                "rating": request.form.get("rating"),
+                "review": request.form.get("review"),
+                "created_by": session["user"],
+                "spare_id": spare_id
             }
 
+            url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
 
-        response = requests.request("GET", url, headers=headers)
-        data = json.loads(response.text)
-        mongo.db.games.insert_one(game)
+            headers = {
+                'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
+                'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
+                }
 
-        global savedImages
-        savedImages = data
-        print(savedImages)
 
-        print(session["user"])
+            response = requests.request("GET", url, headers=headers)
+            data = json.loads(response.text)
+            mongo.db.games.insert_one(game)
 
-        return redirect(url_for("game_images"))
+            global savedImages
+            savedImages = data
+            print(savedImages)
+
+            print(session["user"])
+
+            return redirect(url_for("game_images"))
+        except:
+            flash("There was a problem with the connection")
 
     return render_template("add_game.html")
 
@@ -256,19 +259,21 @@ def game_images():
 @app.route("/add_image", methods=["GET", "POST"])
 def add_image():
     if request.method == 'POST' and session["user"]:
-        image_url = request.form.get('image_url')
-        released = request.form.get('released')
-        print(image_url)
-        print(released)
-        print(spare_id)
-        gameValues = mongo.db.games.find_one({"spare_id": spare_id})
-        print(gameValues)
-        mongo.db.games.update({"spare_id": spare_id}, {"$set": {"background_image": image_url}})
-        mongo.db.games.update({"spare_id": spare_id}, {"$set": {"released": released}})
-        flash("Review Successfully Added")
+        try:
+            image_url = request.form.get('image_url')
+            released = request.form.get('released')
+            print(image_url)
+            print(released)
+            print(spare_id)
+            gameValues = mongo.db.games.find_one({"spare_id": spare_id})
+            print(gameValues)
+            mongo.db.games.update({"spare_id": spare_id}, {"$set": {"background_image": image_url}})
+            mongo.db.games.update({"spare_id": spare_id}, {"$set": {"released": released}})
+            flash("Review Successfully Added")
 
-        return redirect(url_for("reviews"))
-
+            return redirect(url_for("reviews"))
+        except Exception as ex:
+            print(ex)
 # app route for editing review
 
 
@@ -284,27 +289,25 @@ def edit_game(game_id):
         "created_by": session["user"],
         "spare_id": spare_id
         }
-    if request.method == "POST":
-        if session["user"] == submit["created_by"] or session["user"] == "admin":
-
-            url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
-
-            headers = {
-                'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
-                'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
-                }
-
-            response = requests.request("GET", url, headers=headers)
-            data =json.loads(response.text)
-            mongo.db.games.update({"_id": ObjectId(game_id)}, submit)
-
-            global savedImages
-            savedImages = data
-
-            return redirect(url_for("game_images"))
-
-    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
-    return render_template("edit_game.html", game=game)
+    try:
+        if request.method == "POST":
+            if session["user"] == submit["created_by"] or session["user"] == "admin":
+                url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
+                headers = {
+                    'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
+                    'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
+                    }
+                response = requests.request("GET", url, headers=headers)
+                data =json.loads(response.text)
+                mongo.db.games.update({"_id": ObjectId(game_id)}, submit)
+                global savedImages
+                savedImages = data
+                return redirect(url_for("game_images"))
+        game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+        return render_template("edit_game.html", game=game)
+    except Exception as e:
+        print(e)
+        flash("The game doesn't exist")
 
 
 # app route to delete a review
@@ -312,11 +315,15 @@ def edit_game(game_id):
 
 @app.route("/delete_game/<game_id>")
 def delete_game(game_id):
-    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
-    if session["user"] == game["created_by"] or session["user"] == "admin":
-        mongo.db.games.remove({"_id": ObjectId(game_id)})
-        flash("Review Successfully Deleted")
-        return redirect(url_for("reviews"))
+    try:
+        game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+        if session["user"] == game["created_by"] or session["user"] == "admin":
+            mongo.db.games.remove({"_id": ObjectId(game_id)})
+            flash("Review Successfully Deleted")
+            return redirect(url_for("reviews"))
+    except Exception as e:
+        print(e)
+        flash("wrong input")
 
 # app route to search reviews
 
