@@ -350,16 +350,22 @@ def add_image():
 
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
 def edit_game(game_id):
-    game_name = request.form.get("game_name")
-    global spare_id
-    spare_id = uuid.uuid4().hex.upper()
-    submit = {
-        "game_name": request.form.get("game_name"),
-        "rating": request.form.get("rating"),
-        "review": request.form.get("review"),
-        "created_by": session["user"],
-        "spare_id": spare_id
-        }
+    if check_id(game_id):
+        game_name = request.form.get("game_name")
+        global spare_id
+        spare_id = uuid.uuid4().hex.upper()
+        submit = {
+            "game_name": request.form.get("game_name"),
+            "rating": request.form.get("rating"),
+            "review": request.form.get("review"),
+            "created_by": session["user"],
+            "spare_id": spare_id
+            }
+
+    if not submit:
+        flash("Your review id doesn't exist")
+        return redirect(url_for("reviews"))
+
     if request.method == "POST":
         if session["user"] == submit["created_by"] or session["user"] == "admin":
 
@@ -396,8 +402,8 @@ def delete_game(game_id):
             mongo.db.games.remove({"_id": ObjectId(game_id)})
             flash("Review Successfully Deleted")
             return redirect(url_for("reviews"))
-    # If there is no booking found with the booking_id passed through
-    # return user to account page along with flash message.
+    # If there is no review found with the game_id passed through
+    # return user to review page and display a flash message.
     flash("Your booking has already been deleted")
     return redirect(url_for("reviews"))
 
