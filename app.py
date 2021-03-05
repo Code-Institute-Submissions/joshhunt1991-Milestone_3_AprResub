@@ -25,19 +25,19 @@ def check_id(id):
 
 def check_name(name):
     # Validates users names.
-    # Only allow letters and hyphens.  No spaces.
+    # Allow letters and hyphens but no spaces.
     return re.match("^[a-zA-Z-]{0,30}$", name)
 
 
 def check_gamename(name):
-    # Validates users names.
-    # Only allow letters and hyphens.  No spaces.
+    # Validates game names.
+    # Allow letters and hyphens but no spaces.
     return re.match("^[a-zA-Z- ]{0,30}$", name)
 
 
 def check_pw(pw):
     # Validate users passwords.
-    # Allow any characters, length 6-15 characters only.
+    # Allow any characters, 6-15 characters in length.
     return re.match("^.{6,15}$", pw)
 
 
@@ -49,7 +49,7 @@ def check_score(score):
 
 def check_review(text):
     # Validate text input for the review page.
-    # Allow any characters, length 10-250 characters only.
+    # Allow any characters, 10-250 characters in length.
     return re.match("^.{10,250}$", text)
 
 
@@ -110,7 +110,7 @@ def register():
         # check if username exists in mongodb
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
+        # display flash message if user already exists
         if existing_user:
             flash("Sorry, Someone already has that username!")
             return redirect(url_for("register"))
@@ -181,7 +181,7 @@ def home(username):
         {"username": session["user"]})["username"]
     limit = 20
     games = mongo.db.games.find().limit(limit)
-
+    # send user to the logged in homepage if their username is valid
     if session["user"]:
         return render_template("home.html", username=username, games=games)
 
@@ -204,25 +204,19 @@ def logout():
 
 @app.route("/reviews")
 def reviews():
+    # set flask paginate parameters for generating pages
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     per_page = 3
     offset = (page - 1) * per_page
-
     total = mongo.db.games.find().count()
 
-    print(total)
-    print(page, per_page, offset)
-
+    # generate a list of games
     findGames = mongo.db.games.find().sort("_id", -1)
-
+    # paginate the list of games
     paginatedGames = findGames[offset: offset + per_page]
-
-    print(paginatedGames)
-
+    # create the pagination variable for flask paginate
     pagination = Pagination(page=page, per_page=per_page, total=total)
-    print(page, per_page, offset)
-
+    # render the template and pass through all relevant variables
     return render_template('reviews.html',
                            games=paginatedGames,
                            page=page,
@@ -235,27 +229,21 @@ def reviews():
 
 @app.route("/profile_reviews")
 def profile_reviews():
+    # set flask paginate parameters for generating pages
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     per_page = 3
     offset = (page - 1) * per_page
+    # create a user variable to use when searching for the users mongodb reviews
     user = session["user"]
-
+    # find a total game count for pagination purposes
     total = mongo.db.games.find({"created_by": user}).count()
-
-    print(total)
-    print(page, per_page, offset)
-    print(user)
-
+    # create a list of games
     findGames = mongo.db.games.find({"created_by": user}).sort("_id", -1)
-
+    # paginate the games
     paginatedGames = findGames[offset: offset + per_page]
-
-    print(paginatedGames)
-
+    # create pagination variable for flask paginate
     pagination = Pagination(page=page, per_page=per_page, total=total)
-    print(page, per_page, offset)
-
+    # render template and pass through all the relevant variables
     return render_template('profile_reviews.html',
                            games=paginatedGames,
                            page=page,
@@ -270,7 +258,7 @@ def profile_reviews():
 def add_game():
     if request.method == "POST" and session["user"]:
 
-        # Validate the data the user has provided is correct.
+        # Validate the data the user has provided is correct if not provide flash messages to the user
         if request.form.get("game_name") == "" or not check_gamename(
            request.form.get("game_name").lower()):
             flash("Please enter a valid game name.")
@@ -283,7 +271,7 @@ def add_game():
            request.form.get("review")):
             flash("Review does not meet the requirements please enter between 10-250 characters.")
             return redirect(url_for("add_game"))
-
+        # retrieve form data to be posted to mongodb
         game_name = request.form.get("game_name")
         global spare_id
         spare_id = uuid.uuid4().hex.upper()
@@ -294,24 +282,21 @@ def add_game():
             "created_by": session["user"],
             "spare_id": spare_id
         }
-
+        # create a URL to contact rawg api using the game name as a search parameter
         url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
-
+        # necessary headers for the api
         headers = {
             'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
             'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
             }
-
-
+        # retrieve a response from the api and convert it to json
         response = requests.request("GET", url, headers=headers)
         data = json.loads(response.text)
+        # post the review to mongodb
         mongo.db.games.insert_one(game)
-
+        # create a global variable to be passed to other functions for extracting images and other relevant data
         global savedImages
         savedImages = data
-        print(savedImages)
-
-        print(session["user"])
 
         return redirect(url_for("game_images"))
 
@@ -332,13 +317,10 @@ def game_images():
 @app.route("/add_image", methods=["GET", "POST"])
 def add_image():
     if request.method == 'POST' and session["user"]:
+        # when the image is clicked retrieve the image url and the release date
         image_url = request.form.get('image_url')
         released = request.form.get('released')
-        print(image_url)
-        print(released)
-        print(spare_id)
-        gameValues = mongo.db.games.find_one({"spare_id": spare_id})
-        print(gameValues)
+        # search for the relevant review by ID and add the image and release date
         mongo.db.games.update({"spare_id": spare_id}, {"$set": {"background_image": image_url}})
         mongo.db.games.update({"spare_id": spare_id}, {"$set": {"released": released}})
         flash("Review Successfully Added")
@@ -350,9 +332,11 @@ def add_image():
 
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
 def edit_game(game_id):
+    # validate the id before creating a variable to use to update the database
     if check_id(game_id):
         game_name = request.form.get("game_name")
         global spare_id
+        # create a unique id to be used for searching mongodb 
         spare_id = uuid.uuid4().hex.upper()
         submit = {
             "game_name": request.form.get("game_name"),
@@ -361,25 +345,27 @@ def edit_game(game_id):
             "created_by": session["user"],
             "spare_id": spare_id
             }
-
+    # if check_id fails to create a submit variable then the user is redirected to the review page and showed a flash message
     if not submit:
         flash("Your review id doesn't exist")
         return redirect(url_for("reviews"))
 
     if request.method == "POST":
+        # check that the user is the creator of the review or the admin
         if session["user"] == submit["created_by"] or session["user"] == "admin":
-
+            # create a url for searching the api that takes the game name as a search parameter
             url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
-
+            # necessary headers for using the rawg api
             headers = {
                 'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
                 'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
                 }
-
+            # retrieve a response from the api and convert it to json
             response = requests.request("GET", url, headers=headers)
             data =json.loads(response.text)
+            # update the database
             mongo.db.games.update({"_id": ObjectId(game_id)}, submit)
-
+            # update the saved images variable
             global savedImages
             savedImages = data
 
@@ -412,19 +398,22 @@ def delete_game(game_id):
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    # create an empty games variable to populate with search results
     games = ""
-    print(games)
+    # when the post method is used create a search query variable and use that to update the games variable with search results
     if request.method == "POST":
 
         query = request.form.get("query")
-        print(query)
         games = list(mongo.db.games.find({"$text": {"$search": query}}))
-        print(games)
+    # if no search is found display a flash message
+        if not games:
+            flash("sorry, no matching search was found")
+            return redirect(url_for("search"))
 
     return render_template("search.html", games=games)
 
 
-# error handling
+# error handling for missing pages
 
 
 @app.errorhandler(404)
