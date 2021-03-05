@@ -388,11 +388,18 @@ def edit_game(game_id):
 
 @app.route("/delete_game/<game_id>")
 def delete_game(game_id):
-    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
-    if session["user"] == game["created_by"] or session["user"] == "admin":
-        mongo.db.games.remove({"_id": ObjectId(game_id)})
-        flash("Review Successfully Deleted")
-        return redirect(url_for("reviews"))
+    if check_id(game_id):
+        game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+    # if the session user created the game or is admin then the game will be deleted
+    if game:
+        if session["user"] == game["created_by"] or session["user"] == "admin":
+            mongo.db.games.remove({"_id": ObjectId(game_id)})
+            flash("Review Successfully Deleted")
+            return redirect(url_for("reviews"))
+    # If there is no booking found with the booking_id passed through
+    # return user to account page along with flash message.
+    flash("Your booking has already been deleted")
+    return redirect(url_for("reviews"))
 
 # app route to search reviews
 
