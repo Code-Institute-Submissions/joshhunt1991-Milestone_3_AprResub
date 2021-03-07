@@ -1,96 +1,95 @@
 {% extends "base.html" %}
 {% block content %}
-
+<!-- header -->
 <div class="row black-bg no-margins">
-    <div class="col s12">
-        <h1 class="center-align blue-text">Add a game review!</h1>
-    </div>
+   <div class="col s12">
+      <h1 class="center-align blue-text">Add a game review!</h1>
+   </div>
 </div>
-
+<!-- add review form -->
 <div class="row black-bg no-margins">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_game') }}">
-        <div class="card-panel">
-            <!-- game name -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-gamepad prefix blue-text"></i>
-                    <input id="game_name" name="game_name" type="text" minlength="3" maxlength="50" class="validate form-input" required>
-                    <label class="form-text" for="game_name">Game Name</label>
-                </div>
+   <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_game') }}">
+      <div class="card-panel">
+         <!-- game name -->
+         <div class="row">
+            <div class="input-field col s12">
+               <i class="fas fa-gamepad prefix blue-text"></i>
+               <input id="game_name" name="game_name" type="text" minlength="3" maxlength="50" class="validate form-input" required>
+               <label class="form-text" for="game_name">Game Name</label>
             </div>
-            <!-- number of stars -->
-            <div class="row rating-label-div">
-                <div class="col s12 rating-label-div">
-            <p class="form-text"><i class="far fa-star blue-text"></i>Rating</p>
-                </div>
+         </div>
+         <!-- number of stars -->
+         <div class="row rating-label-div">
+            <div class="col s12 rating-label-div">
+               <p class="form-text"><i class="far fa-star blue-text"></i>Rating</p>
             </div>
-            <div class="row star-div">
-                <div class="col s2">
-                <p>
-                    <label for="1">
-                        <input id="1" name="rating" type="radio" value="1" checked />
-                        <span class="form-text">1</span>
-                    </label>
-                </p>
-                </div>
-                <div class="col s2">
-                <p>
-                    <label for="2">
-                        <input id="2" name="rating" type="radio" value="2"/>
-                        <span class="form-text">2</span>
-                    </label>
-                </p>
-                </div>
-                <div class="col s2">
-                <p>
-                    <label for="3">
-                        <input id="3" name="rating" type="radio" value="3"/>
-                        <span class="form-text">3</span>
-                    </label>
-                </p>
-                </div>
-                <div class="col s2">
-                <p>
-                    <label for="4">
-                        <input id="4" name="rating" type="radio" value="4"/>
-                        <span class="form-text">4</span>
-                    </label>
-                </p>
-                </div>
-                <div class="col s2">
-                <p>
-                    <label for="5">
-                        <input id="5" name="rating" type="radio" value="5"/>
-                        <span class="form-text">5</span>
-                    </label>
-                </p>
-                </div>
+         </div>
+         <div class="row star-div">
+            <div class="col s2">
+               <p>
+                  <label for="1">
+                  <input id="1" name="rating" type="radio" value="1" checked />
+                  <span class="form-text">1</span>
+                  </label>
+               </p>
             </div>
-            <!-- review text area -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="review" name="review" class="materialize-textarea validate form-input"></textarea>
-                    <label class="form-text" for="review">Write your review</label>
-                </div>
+            <div class="col s2">
+               <p>
+                  <label for="2">
+                  <input id="2" name="rating" type="radio" value="2"/>
+                  <span class="form-text">2</span>
+                  </label>
+               </p>
             </div>
-            <!-- Submit button -->
-            <div class="row">
-                <button type="submit" class="col s12 btn-large blue-bg text-shadow">
-                    Submit <i class="fas fa-sign-in-alt"></i>
-                </button>
+            <div class="col s2">
+               <p>
+                  <label for="3">
+                  <input id="3" name="rating" type="radio" value="3"/>
+                  <span class="form-text">3</span>
+                  </label>
+               </p>
             </div>
-        </div>
-    </form>
+            <div class="col s2">
+               <p>
+                  <label for="4">
+                  <input id="4" name="rating" type="radio" value="4"/>
+                  <span class="form-text">4</span>
+                  </label>
+               </p>
+            </div>
+            <div class="col s2">
+               <p>
+                  <label for="5">
+                  <input id="5" name="rating" type="radio" value="5"/>
+                  <span class="form-text">5</span>
+                  </label>
+               </p>
+            </div>
+         </div>
+         <!-- review text area -->
+         <div class="row">
+            <div class="input-field col s12">
+               <textarea id="review" name="review" class="materialize-textarea validate form-input"></textarea>
+               <label class="form-text" for="review">Write your review</label>
+            </div>
+         </div>
+         <!-- Submit button -->
+         <div class="row">
+            <button type="submit" class="col s12 btn-large blue-bg text-shadow">
+            Submit <i class="fas fa-sign-in-alt"></i>
+            </button>
+         </div>
+      </div>
+   </form>
 </div>
-
+<!-- return to review page button -->
 <div class="row black-bg no-margins">
-    <div class="col s12">
-        <p class="center-align bodytext white-text">
-            Changed your mind?
-            <a href="{{ url_for('reviews') }}" class="light-blue-text text-darken-4">click to return to the review
-                page</a>
-        </p>
-    </div>
+   <div class="col s12">
+      <p class="center-align bodytext white-text">
+         Changed your mind?
+         <a href="{{ url_for('reviews') }}" class="light-blue-text text-darken-4">click to return to the review
+         page</a>
+      </p>
+   </div>
 </div>
-
 {% endblock %}

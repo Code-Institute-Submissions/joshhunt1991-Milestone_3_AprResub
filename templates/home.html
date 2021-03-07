@@ -1,50 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-
 <!-- welcome message -->
-
 <div class="row welcome-row">
-    <div class="col s12 m8 offset-m2">
-        <div class="card-panel normal-grey">
-            <h3 class="center-align blue-text text-darken 4">
-                Welcome {{ username }}, head to the review page to start reviewing games!
-            </h3>
-        </div>
-    </div>
+   <div class="col s12 m8 offset-m2">
+      <div class="card-panel normal-grey">
+         <h3 class="center-align blue-text text-darken 4">
+            Welcome {{ username }}, head to the review page to start reviewing games!
+         </h3>
+      </div>
+   </div>
 </div>
-
 <!-- profile reviews link -->
 <div class="center add-review-div">
-    <a href="{{ url_for('profile_reviews', username=session['user']) }}"
-        class="add-review waves-effect waves-light btn-large blue-bg button-text"><i
-            class="fas fa-pencil-alt right"></i>View your reviews</a>
+   <a href="{{ url_for('profile_reviews', username=session['user']) }}"
+      class="add-review waves-effect waves-light btn-large blue-bg button-text"><i
+      class="fas fa-pencil-alt right"></i>View your reviews</a>
 </div>
-
 <!-- recently reviewed games header -->
-
 <h3 class="blue-text center recent-review-txt">Recently reviewed games</h3>
-
-
 <!-- recent reviews carousel -->
 <div class="container no-padding carousel-container">
-<div class="carousel center">
-    {% for game in games|reverse %}
-    <div class="carousel-item center">
-        <p class="blue-text recent-font">{{ game.game_name }}</p>
-        <img class="thumbnail" src="{{ game.background_image }}">
+   <div class="carousel center">
+      {% for game in games|reverse %}
+      <div class="carousel-item center">
+         <p class="blue-text recent-font">{{ game.game_name }}</p>
+         <img class="thumbnail" src="{{ game.background_image }}">
          {% if game.rating == "5" %}        
-                <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-                {% elif game.rating == "4" %}
-                <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-                {% elif game.rating == "3" %}
-                <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-                {% elif game.rating == "2" %}
-                <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-                {% elif game.rating == "1" %}
-                <p class="review-text"><i class="fas fa-star"></i></p>
-                {% endif %}
-    </div>
-    {% endfor %}
-</div>
+         <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+         {% elif game.rating == "4" %}
+         <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+         {% elif game.rating == "3" %}
+         <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+         {% elif game.rating == "2" %}
+         <p class="review-text"><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+         {% elif game.rating == "1" %}
+         <p class="review-text"><i class="fas fa-star"></i></p>
+         {% endif %}
+      </div>
+      {% endfor %}
+   </div>
 </div>
 {% endblock %}

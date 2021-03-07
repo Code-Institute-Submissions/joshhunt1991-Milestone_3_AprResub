@@ -1,30 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-
 <body>
-
-    <h1 class="center blue-text">Select your chosen game below!</h1>
-
-    <!-- back button -->
-    <div class="center add-review">
-        <a href="{{ url_for('reviews') }}" class="review-text waves-effect waves-light btn-large red darken-4"><i class="fas fa-dice-d20"></i> BACK</a>
-    </div>
-    
-    <div class="row">
-    {% for games in savedImages.results %}
-        <div class="col s4 l4 no-padding">
-            <p class="white-text center bodytext">{{ games.name }}</p>
-            <form class=" center" method="POST" action="{{ url_for('add_image') }}">
+   <!-- header -->
+   <h1 class="center blue-text">Select your chosen game below!</h1>
+   <!-- back button -->
+   <div class="center add-review">
+      <a href="{{ url_for('reviews') }}" class="review-text waves-effect waves-light btn-large red darken-4"><i class="fas fa-dice-d20"></i> BACK</a>
+   </div>
+   <!-- display game images -->
+   <div class="row">
+      {% for games in savedImages.results %}
+      <div class="col s4 l4 no-padding">
+         <p class="white-text center bodytext">{{ games.name }}</p>
+         <form class=" center" method="POST" action="{{ url_for('add_image') }}">
             <button class="image-button" type="submit"><img class="review-image" src="{{ games.background_image }}" alt="game image"></button>
             <input hidden name="image_url" value="{{ games.background_image }}">
             <input hidden name="released" value="{{ games.released }}">
             <p style="display: none">{{ games.background_image }}</p>
-            </form>
-        </div>
-    {% endfor %}
-    </div>
+         </form>
+      </div>
+      {% endfor %}
+   </div>
 </body>
-
-
-
 {% endblock %}

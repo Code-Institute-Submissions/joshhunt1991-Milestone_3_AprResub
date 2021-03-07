@@ -1,50 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <div class="row black-bg no-margins">
-        <div class="col s12">
-            <h1 class="center-align blue-text">Log in Below!</h1>
-        </div>
-    </div>
-
-    <div class="row black-bg no-margins">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
-            <div class="card-panel">
-                <!-- username -->
-                <div class="row">
-					<div class="input-field col s12">
-						<i class="blue-text fas fa-user-cog prefix"></i>
-						<input id="username" name="username" type="text" minlength="5"
-                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate form-input" required>
-						<label class="form-text" for="username">Username</label>
-					</div>
-                </div>
-                <!-- password -->
-                <div class="row">
-                    <div class="input-field col s12">
-						<i class="blue-text fas fa-user-lock prefix"></i>
-                        <input id="password" name="password" type="password" minlength="5"
-                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate form-input" required>
-                        <label class="form-text" for="password">Password</label>
-                    </div>
-                </div>
-                <!-- login -->
-                <div class="row">
-                    <button type="submit" class="col s12 btn-large blue-bg text-shadow ">
-                        Log In <i class="fas fa-sign-in-alt"></i>
-                    </button>
-                </div>
+<!-- header -->
+<div class="row black-bg no-margins">
+   <div class="col s12">
+      <h1 class="center-align blue-text">Log in Below!</h1>
+   </div>
+</div>
+<!-- login form -->
+<div class="row black-bg no-margins">
+   <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+      <div class="card-panel">
+         <!-- username -->
+         <div class="row">
+            <div class="input-field col s12">
+               <i class="blue-text fas fa-user-cog prefix"></i>
+               <input id="username" name="username" type="text" minlength="5"
+                  maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate form-input" required>
+               <label class="form-text" for="username">Username</label>
             </div>
-        </form>
-    </div>
-
-    <div class="row black-bg no-margins">
-        <div class="col s12">
-            <p class="center-align bodytext white-text">
-                Make an account!
-                <a href="{{ url_for('register') }}" class="light-blue-text text-darken-4">Register Account</a>
-            </p>
-        </div>
-    </div>
-
+         </div>
+         <!-- password -->
+         <div class="row">
+            <div class="input-field col s12">
+               <i class="blue-text fas fa-user-lock prefix"></i>
+               <input id="password" name="password" type="password" minlength="5"
+                  maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate form-input" required>
+               <label class="form-text" for="password">Password</label>
+            </div>
+         </div>
+         <!-- login -->
+         <div class="row">
+            <button type="submit" class="col s12 btn-large blue-bg text-shadow ">
+            Log In <i class="fas fa-sign-in-alt"></i>
+            </button>
+         </div>
+      </div>
+   </form>
+</div>
+<!-- register button -->
+<div class="row black-bg no-margins">
+   <div class="col s12">
+      <p class="center-align bodytext white-text">
+         Make an account!
+         <a href="{{ url_for('register') }}" class="light-blue-text text-darken-4">Register Account</a>
+      </p>
+   </div>
+</div>
 {% endblock %}
