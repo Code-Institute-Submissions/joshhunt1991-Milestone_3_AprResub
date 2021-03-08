@@ -25,13 +25,13 @@ def check_id(id):
 
 def check_name(name):
     # Validates users names.
-    # Allow letters and hyphens but no spaces.
-    return re.match("^[a-zA-Z-]{0,30}$", name)
+    # Allow letters numbers and hyphens but no spaces.
+    return re.match("[a-zA-Z0-9.-_]+$", name)
 
 
 def check_gamename(name):
     # Validates game names.
-    # Allow letters and hyphens but no spaces.
+    # Allow letters and hyphens.
     return re.match("^[a-zA-Z- ]{0,30}$", name)
 
 

@@ -27,7 +27,7 @@ The deployment process is shown below:
 
 ## Goals and Aims
 
-This project is a spiritual successor to my previous milestone project, VG Search. The goal is to expand on the concept showcased in the previous project and focus on the functionality of CRUD to allow the user to create posts, read other peoples posts, update their own posts when necessary and delete their own posts.
+This project is a spiritual successor to my previous milestone project, VG Search, which can be found on my github. The goal is to expand on the concept showcased in the previous project and focus on the functionality of CRUD to allow the user to create posts, read other peoples posts, update their own posts when necessary and delete their own posts.
 
 ## User Stories
 
@@ -39,7 +39,7 @@ This project is a spiritual successor to my previous milestone project, VG Searc
 -   As a user, I want to reviews to be displayed in an aesthetically pleasing manner
 -   As a user, I want my app to be fully responsive to all viewport sizes so I can access my profile on mobiles, tablets, laptops and desktop computers
 
-### Wireframes
+## Wireframes
 
 Using these goals as a guide I drew up some wireframes as an initial design using MS paint.
 
