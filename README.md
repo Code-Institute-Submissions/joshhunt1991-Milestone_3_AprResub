@@ -160,7 +160,7 @@ The following security measures were implemented
 
 # Testing
 
---------------------
+A seperate file covering testing can be found [here](TESTING.md)
 
 # Bugs and issues
 

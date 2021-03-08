@@ -25,14 +25,14 @@ def check_id(id):
 
 def check_name(name):
     # Validates users names.
-    # Allow letters numbers and hyphens but no spaces.
+    # Allow letters, numbers fullstops, underscores and hyphens but no spaces.
     return re.match("[a-zA-Z0-9.-_]+$", name)
 
 
 def check_gamename(name):
     # Validates game names.
-    # Allow letters and hyphens.
-    return re.match("^[a-zA-Z- ]{0,30}$", name)
+    # Allow letters numbers and hyphens and spaces.
+    return re.match("[a-zA-Z0-9.-_ ]+$", name)
 
 
 def check_pw(pw):
@@ -50,7 +50,7 @@ def check_score(score):
 def check_review(text):
     # Validate text input for the review page.
     # Allow any characters, 10-250 characters in length.
-    return re.match("^.{10,250}$", text)
+    return re.match("^.{10,500}$", text)
 
 
 # global variables
@@ -357,6 +357,20 @@ def edit_game(game_id):
     if request.method == "POST":
         # check that the user is the creator of the review or the admin
         if session["user"] == submit["created_by"] or session["user"] == "admin":
+            # Validate the data the user has provided is correct if not provide flash messages to the user
+            if request.form.get("game_name") == "" or not check_gamename(
+               request.form.get("game_name").lower()):
+                flash("Please enter a valid game name.")
+                return redirect(url_for("add_game"))
+            if request.form.get("rating") == "" or not check_score(
+               request.form.get("rating").lower()):
+                flash("Please enter a valid score.")
+                return redirect(url_for("add_game"))
+            if request.form.get("review") == "" or not check_review(
+               request.form.get("review")):
+                flash(
+                    "Review does not meet the requirements please enter between 10-250 characters.")
+                return redirect(url_for("add_game"))
             # create a url for searching the api that takes the game name as a search parameter
             url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
             # necessary headers for using the rawg api
