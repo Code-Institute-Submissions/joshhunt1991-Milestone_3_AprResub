@@ -167,10 +167,10 @@ I have used different resources for the API images and my logo, I'll list all be
 
 - [Looka](https://www.looka.com/) for the logo design
 - [Pexels](https://unsplash.com/s/photos/video-game) for the landing page image and the three images on the about page.
-    -https://www.pexels.com/photo/technology-keyboard-lighting-candy-3165335/  (landing page image)
-    -https://www.pexels.com/photo/xbox-one-controller-beside-three-xbox-one-cases-139038/ (xbox image)
-    -https://www.pexels.com/photo/black-dualshock-4-2885014/  (ps4 controller)
-    -https://www.pexels.com/photo/close-up-photo-of-gaming-keyboard-2115257/ (pc keyboard)
+    - https://www.pexels.com/photo/technology-keyboard-lighting-candy-3165335/  (landing page image)
+    - https://www.pexels.com/photo/xbox-one-controller-beside-three-xbox-one-cases-139038/ (xbox image)
+    - https://www.pexels.com/photo/black-dualshock-4-2885014/  (ps4 controller)
+    - https://www.pexels.com/photo/close-up-photo-of-gaming-keyboard-2115257/ (pc keyboard)
 - [Font Awesome](https://fontawesome.com/6?next=%2Fstart) for the magnifying glass on the search bar, controller on the sign up button, the social media links and the icons on all the forms
 - [Rapid API](https://rapidapi.com/accujazz/api/rawg-video-games-database/) I used the RawG video games database API which is hosted on Rapid API.
 - [favicon.io](https://favicon.io/favicon-generator/) for the favicon
