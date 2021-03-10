@@ -312,6 +312,10 @@ def add_game():
 @app.route("/game_images")
 def game_images():
     game = mongo.db.games.find_one({"_id": ObjectId()})
+    print(savedImages)
+    if savedImages['count'] == 0:
+        flash("No games matching your search were found")
+        return redirect(url_for("reviews"))
     return render_template("game_images.html", savedImages=savedImages)
 
 # app route for adding image and release date
