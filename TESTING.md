@@ -1,6 +1,6 @@
 ![VG Review logo](readmelinks/logo.png)
 
-# VG ReviewsTesting
+# VG Reviews Testing
 
 ## Manual Testing
 
@@ -91,6 +91,35 @@ Manual testing for this project was performed continually throughout the develop
 ### log out functionality
 
 [-I clicked the log out navigation link to make sure that the session is exited.] <br/>
+
+### Responsive design
+
+Below are some images demonstrating the responsiveness of the webpage on different viewport sizes.
+
+- Desktop sizes: <br/>
+[- image of the homepage](/readmelinks/dhome.png) <br/>
+[- image of the about page](/readmelinks/dabout.png) <br/>
+[- image of how the forms look](/readmelinks/dforms.png) <br/>
+[- image of logged in home page](/readmelinks/dlogged.png) <br/>
+[- image of review slider](/readmelinks/dslider.png) <br/>
+[- image of review page](/readmelinks/dreviews.png) <br/>
+
+- Tablet sizes: <br/>
+[- image of the homepage](/readmelinks/thome.png) <br/>
+[- image of the about page](/readmelinks/tabout.png) <br/>
+[- image of how the forms look](/readmelinks/tforms.png) <br/>
+[- image of logged in home page](/readmelinks/tlogged.png) <br/>
+[- image of review slider](/readmelinks/tslider.png) <br/>
+[- image of review page](/readmelinks/treviews.png) <br/>
+
+- Mobile sizes: <br/>
+[- image of the homepage](/readmelinks/mhome.png) <br/>
+[- image of the about page](/readmelinks/mabout.png) <br/>
+[- image of how the forms look](/readmelinks/mforms.png) <br/>
+[- image of logged in home page](/readmelinks/mlogged.png) <br/>
+[- image of review slider](/readmelinks/mslider.png) <br/>
+[- image of review page](/readmelinks/mreviews.png) <br/>
+
 
 This wraps up the manual testing section.
 

@@ -75,30 +75,6 @@ Here is the final list of pages after these changes
 - The search page: The search page contains a search bar that displays relevant games when they are available
 - The page not found page: Displays a 404 error when an address is used that doesn't exist.
 
-Below are some images demonstrating the responsiveness of the webpage on different viewport sizes.
-
-- Desktop sizes: <br/>
-[- image of the homepage](/readmelinks/s1.png) <br/>
-[- image of the homepage image slider](/readmelinks/s2.png) <br/>
-[- image of random games page](/readmelinks/s3.png) <br/>
-[- image of search results](/readmelinks/s6.png) <br/>
-[- image of the about page](/readmelinks/s5.png) <br/>
-[- image of a selected game](/readmelinks/s20.png) <br/>
-[- image of a selected game scrolled down to show chart](/readmelinks/s21.png) <br/>
-
-- Tablet sizes: <br/>
-[- image of the homepage](/readmelinks/s7.png) <br/>
-[- image of search results](/readmelinks/s11.png) <br/>
-[- image of the random games page](/readmelinks/s8.png) <br/>
-[- image of the about page](/readmelinks/s9.png) <br/>
-
-- Mobile sizes: <br/>
-[- image of the homepage](/readmelinks/s13.png) <br/>
-[- image of search results](/readmelinks/s14.png) <br/>
-[- image of the random games page](/readmelinks/s15.png) <br/>
-[- image of a selected game](/readmelinks/s18.png) <br/>
-[- image of a selected game showing the chart](/readmelinks/s19.png) <br/>
-
 
 # Visual Identity
 
@@ -141,7 +117,6 @@ I used Teko as my standard font across the site as I think its clear and easy to
 
 -   Reviews can be edited or deleted
 -   Only reviews written by the current session user can be deleted unless logged in as admin
-
 
 # Security
 
