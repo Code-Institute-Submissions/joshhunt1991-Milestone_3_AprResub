@@ -3,6 +3,7 @@ import os
 import requests
 import json
 import bson
+import uuid
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -13,7 +14,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
-import uuid
+
 
 # validation functions
 

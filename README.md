@@ -198,15 +198,22 @@ I have used different resources for the API images and my logo, I'll list all be
 
 # Testing
 
-Testing was done manually throughout the development process and was also automated using [Cypress](https://www.cypress.io/). The full rundown of the testing can be found [here](TESTING.md).
+Website has been tested using GTmetrix see results below:
 
-Additionally, all code was validated in the following ways:
+[- GT Metrix test results screenshot](/readmelinks/gtmetrix.png) <br/>
 
-**HTML** - All pages were successfully run through the [W3C HTML Validator](https://validator.w3.org/) to ensure compliance with the standards set by the W3C.
+- [full test results](https://gtmetrix.com/reports/vg-review.herokuapp.com/pNiXfCRh/)
 
-**CSS** - CSS validation with the W3C's [Jigsaw Validator](https://jigsaw.w3.org/css-validator/) returned some expected and necessary flags from vendor extensions. Other than that, the code complies to the W3C standards.
+The page has a fully loaded time of 2.5 seconds which can be improved in further updates by resizing the images I have used to closer to their final size as suggested in the summary.
 
-**Python** - All Python code was checked with the [PEP8 online validator](http://pep8online.com/) and is PEP8 compliant.
+
+I also validated my code using the following resources:
+
+**HTML** - All pages were successfully checked with [W3C HTML Validator](https://validator.w3.org/).
+
+**CSS** - CSS validation was performed with W3C's [Jigsaw Validator](https://jigsaw.w3.org/css-validator/) which returned no errors.
+
+**Python** - All Python code was checked with the [PEP8 online validator](http://pep8online.com/).
 
 # Thanks to
 
