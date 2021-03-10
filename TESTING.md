@@ -57,7 +57,7 @@ Manual testing for this project was performed continually throughout the develop
 [- As before I realised when testing my validation that I wasn't allowing numbers to be used in the game name which would obviously cause issues, I fixed this and tested it and was correctly redirected to the game images page] <br/>
 [- I then posted multiple reviews testing all the ratings radio buttons to ensure that the stars display correctly on the reviews] <br/>
 [- Next I tested the review text area, I exceeded the character limit and also put less than the necessary amount to test validation] (/readmelinks/too-short.png) <br/>
-[- I filled the form out with gibberish and returned the game image page with no games] <br/>
+[- I filled the form out with gibberish and when no games were found the redirect to the review page and the flash message displayed as expected] (/readmelinks/nogames.png)<br/>
 [- Finally I filled the form out correctly with a game that I know exists and returned the game images page] <br/>
 
 ### add image page
