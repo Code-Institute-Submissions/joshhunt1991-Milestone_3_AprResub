@@ -177,6 +177,8 @@ I have used different resources for the API images and my logo, I'll list all be
 
 # Testing
 
+I have created a full manual testing document which can be found [here](TESTING.md).
+
 Website has been tested using GTmetrix see results below:
 
 [- GT Metrix test results screenshot](/readmelinks/gtmetrix.png) <br/>
