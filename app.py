@@ -236,7 +236,8 @@ def profile_reviews():
         page_parameter='page', per_page_parameter='per_page')
     per_page = 3
     offset = (page - 1) * per_page
-    # create a user variable to use when searching for the users mongodb reviews
+    # create a user variable to use when
+    #  searching for the users mongodb reviews
     user = session["user"]
     # find a total game count for pagination purposes
     total = mongo.db.games.find({"created_by": user}).count()
@@ -261,7 +262,8 @@ def profile_reviews():
 def add_game():
     if request.method == "POST" and session["user"]:
 
-        # Validate the data the user has provided is correct if not provide flash messages to the user
+        # Validate the data the user has provided
+        #  is correct if not provide flash messages to the user
         if request.form.get("game_name") == "" or not check_gamename(
            request.form.get("game_name").lower()):
             flash("Please enter a valid game name.")
@@ -273,7 +275,8 @@ def add_game():
         if request.form.get("review") == "" or not check_review(
            request.form.get("review")):
             flash(
-                "Review does not meet the requirements please enter between 10-250 characters.")
+                "Review does not meet the requirements \
+                please enter between 10-250 characters.")
             return redirect(url_for("add_game"))
         # retrieve form data to be posted to mongodb
         game_name = request.form.get("game_name")
@@ -286,19 +289,16 @@ def add_game():
             "created_by": session["user"],
             "spare_id": spare_id
         }
-        # create a URL to contact rawg api using the game name as a search parameter
-        url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
-        # necessary headers for the api
-        headers = {
-            'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
-            'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
-        }
+        # create a URL to contact rawg api
+        #  using the game name as a search parameter
+        url = "https://api.rawg.io/api/games?key=83d400ff7d7b44ab9b313a45ca56a910&search=" + game_name  # noqa
         # retrieve a response from the api and convert it to json
-        response = requests.request("GET", url, headers=headers)
+        response = requests.request("GET", url)
         data = json.loads(response.text)
         # post the review to mongodb
         mongo.db.games.insert_one(game)
-        # create a global variable to be passed to other functions for extracting images and other relevant data
+        # create a global variable to be passed to other
+        #  functions for extracting images and other relevant data
         global savedImages
         savedImages = data
 
@@ -327,7 +327,8 @@ def add_image():
         # when the image is clicked retrieve the image url and the release date
         image_url = request.form.get('image_url')
         released = request.form.get('released')
-        # search for the relevant review by ID and add the image and release date
+        # search for the relevant review by
+        #  ID and add the image and release date
         mongo.db.games.update({"spare_id": spare_id}, {
                               "$set": {"background_image": image_url}})
         mongo.db.games.update({"spare_id": spare_id}, {
@@ -354,15 +355,18 @@ def edit_game(game_id):
             "created_by": session["user"],
             "spare_id": spare_id
         }
-    # if check_id fails to create a submit variable then the user is redirected to the review page and showed a flash message
+    # if check_id fails to create a submit variable then the user
+    #  is redirected to the review page and showed a flash message
     if not submit:
         flash("Your review id doesn't exist")
         return redirect(url_for("reviews"))
 
     if request.method == "POST":
         # check that the user is the creator of the review or the admin
-        if session["user"] == submit["created_by"] or session["user"] == "admin":
-            # Validate the data the user has provided is correct if not provide flash messages to the user
+        if (session["user"] == submit["created_by"] or
+           session["user"] == "admin"):
+            # Validate the data the user has provided
+            #  is correct if not provide flash messages to the user
             if request.form.get("game_name") == "" or not check_gamename(
                request.form.get("game_name").lower()):
                 flash("Please enter a valid game name.")
@@ -374,15 +378,15 @@ def edit_game(game_id):
             if request.form.get("review") == "" or not check_review(
                request.form.get("review")):
                 flash(
-                    "Review does not meet the requirements please enter between 10-250 characters.")
+                    "Review does not meet the requirements \
+                    please enter between 10-250 characters.")
                 return redirect(url_for("add_game"))
-            # create a url for searching the api that takes the game name as a search parameter
-            url = "https://rawg-video-games-database.p.rapidapi.com/games?search=" + game_name
-            # necessary headers for using the rawg api
-            headers = {
-                'x-rapidapi-key': "e820b60717mshf9de36d3c2a66b8p16a209jsnbbb441546d84",
-                'x-rapidapi-host': "rawg-video-games-database.p.rapidapi.com"
-            }
+            # create a url for searching the api that
+            #  takes the game name as a search parameter
+            url = "https://api.rawg.io/api/games?key=83d400ff7d7b44ab9b313a45ca56a910&search=" + game_name  # noqa
+        # retrieve a response from the api and convert it to json
+            response = requests.request("GET", url)
+            data = json.loads(response.text)
             # retrieve a response from the api and convert it to json
             response = requests.request("GET", url, headers=headers)
             data = json.loads(response.text)
@@ -405,7 +409,8 @@ def edit_game(game_id):
 def delete_game(game_id):
     if check_id(game_id):
         game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
-    # if the session user created the game or is admin then the game will be deleted
+    # if the session user created the game
+    #  or is admin then the game will be deleted
     if game:
         if session["user"] == game["created_by"] or session["user"] == "admin":
             mongo.db.games.remove({"_id": ObjectId(game_id)})
@@ -423,7 +428,8 @@ def delete_game(game_id):
 def search():
     # create an empty games variable to populate with search results
     games = ""
-    # when the post method is used create a search query variable and use that to update the games variable with search results
+    # when the post method is used create a search query
+    #  variable and use that to update the games variable with search results
     if request.method == "POST":
 
         query = request.form.get("query")
