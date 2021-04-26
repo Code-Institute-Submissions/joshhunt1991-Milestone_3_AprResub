@@ -139,6 +139,10 @@ A seperate file covering testing can be found [here](TESTING.md)
 
 # Bugs and issues
 
+- *UNSOLVED* There is an error in the html validator on all pages. Error: Stray start tag footer. I could not find a reason for this error
+
+- *UNSOLVED* There is an error in the html validator on all pages. Error: Start tag body seen but an element of the same type was already open. I could not find a reason for this error
+
 - *SOLVED* Once pagination was implemented it broke my search functionality. Originally the search bar was on the review page, I had been thinking the search may be better on its own seperate page and this bug pushed me to implement that.
 
 - *SOLVED* Pagination was missing the first 3 results from the database which I later found was caused by a mistake in the value of the offset variable
