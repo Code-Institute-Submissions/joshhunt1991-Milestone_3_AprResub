@@ -172,7 +172,7 @@ I have used different resources for the API images and my logo, I'll list all be
     - https://www.pexels.com/photo/black-dualshock-4-2885014/  (ps4 controller)
     - https://www.pexels.com/photo/close-up-photo-of-gaming-keyboard-2115257/ (pc keyboard)
 - [Font Awesome](https://fontawesome.com/6?next=%2Fstart) for the magnifying glass on the search bar, controller on the sign up button, the social media links and the icons on all the forms
-- [Rapid API](https://rapidapi.com/accujazz/api/rawg-video-games-database/) I used the RawG video games database API which is hosted on Rapid API.
+- [RawG API](https://rawg.io/apidocs) I used the RawG video games database API.
 - [favicon.io](https://favicon.io/favicon-generator/) for the favicon
 
 # Testing
@@ -204,7 +204,7 @@ I also validated my code using the following resources:
 - Materialize css developers for the great resource and documentation
 - Python developers for designing and maintaining my favourite coding language so far
 - Looka for the great and easy to use log design service
-- Rapid API and RawG video games database for the impressive database of video games and information and the well documented platform.
+- RawG video games database for the impressive database of video games and information and the well documented platform.
 
 # License
 
